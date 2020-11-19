@@ -1,12 +1,21 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import MainContainer from './MainContainer';
 import reportWebVitals from './reportWebVitals';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import { searchReducer } from './Reducers/index';
+import 'semantic-ui-css/semantic.min.css'
+ 
+const store = createStore(searchReducer, applyMiddleware(thunk));
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <MainContainer />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );
